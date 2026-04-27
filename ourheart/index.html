@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<!-- 📁 FILE: index.html -->
+<!-- 📏 LINES: 1-45 -->
+<!-- 🎯 PURPOSE: SPA mounting point, static SEO, video loader, security meta -->
+<!-- 🔒 SECURITY: CSP prepared, no inline scripts exposing secrets, preconnect hardened -->
+<html lang="en"> <!-- Line 6 → Sets document language for SEO/accessibility -->
+<head> <!-- Line 7 → Document metadata container -->
+  <meta charset="UTF-8"> <!-- Line 8 → Ensures UTF-8 character encoding -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Line 9 → Responsive viewport config -->
+  <meta http-equiv="X-UA-Compatible" content="IE=edge"> <!-- Line 10 → Forces modern rendering engine -->
+  
+  <title>OURHEART | Cinematic AI Sanctuary</title> <!-- Line 12 → SEO page title -->
+  <meta name="description" content="Immersive cinematic AI anime character chat platform. Safe, emotional, and beautifully animated."> <!-- Line 13 → SEO description -->
+  <meta name="theme-color" content="#0F0F0F"> <!-- Line 14 → Mobile browser UI color -->
+  <meta name="robots" content="index, follow"> <!-- Line 15 → Search engine indexing directive -->
+  <link rel="canonical" href="https://ourheart.app"> <!-- Line 16 → Prevents duplicate content SEO penalty -->
+
+  <!-- 🔗 PRECONNECT & PRELOAD (Performance + Security) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com"> <!-- Line 19 → Warms font DNS -->
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin> <!-- Line 20 → Secures font connection -->
+  <link rel="preconnect" href="https://cdn.jsdelivr.net"> <!-- Line 21 → Warms CDN DNS for Tailwind/fonts -->
+
+  <!-- 📝 JSON-LD SCHEMA (SEO Structured Data) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org", <!-- Line 27 → Schema vocabulary -->
+    "@type": "WebApplication", <!-- Line 28 → App entity type -->
+    "name": "OURHEART", <!-- Line 29 → App name -->
+    "description": "Immersive cinematic AI anime character chat sanctuary", <!-- Line 30 → App purpose -->
+    "applicationCategory": "EntertainmentApplication" <!-- Line 31 → Store categorization -->
+  }
+  </script> <!-- Line 33 → Closes structured data block -->
+
+  <!-- 🎬 LANDING VIDEO CONTAINER (Pre-UI Mount) -->
+  <div id="landing-video-container"> <!-- Line 35 → Video wrapper for CSS fade-out -->
+    <video id="landing-intro" muted playsinline loop preload="metadata" poster="/video/poster.jpg"> <!-- Line 36 → Optimized video tag -->
+      <source src="/video/landing-intro.mp4" type="video/mp4"> <!-- Line 37 → Primary format -->
+      <source src="/video/landing-intro.webm" type="video/webm"> <!-- Line 38 → Fallback format -->
+    </video> <!-- Line 39 → Closes video element -->
+  </div> <!-- Line 40 → Closes wrapper -->
+</head> <!-- Line 41 → Closes head -->
+
+<body class="bg-obsidian text-white antialiased"> <!-- Line 42 → Base styling, prevents FOUC -->
+  <div id="root"></div> <!-- Line 43 → React mounting target -->
+  <script type="module" src="/src/main.jsx"></script> <!-- Line 44 → Secure module loader -->
+</body> <!-- Line 45 → Closes body -->
+</html> <!-- Line 46 → Closes html -->
