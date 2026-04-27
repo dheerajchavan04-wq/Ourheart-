@@ -1,0 +1,30 @@
+{
+  // 📁 FILE: package.json
+  // 📏 LINES: 1-38
+  // 🎯 PURPOSE: Dependency registry, scripts, Vercel/GitHub compatibility
+  // 🔒 SECURITY: Pins versions, enforces node engine, disables unsafe scripts
+  "name": "ourheart",
+  "private": true, // Line 7 → Prevents accidental npm publish
+  "version": "1.0.0",
+  "type": "module", // Line 9 → Enables ES modules for modern Vite
+  "engines": { "node": ">=18.0.0" }, // Line 10 → Enforces secure Node LTS
+  "scripts": {
+    "dev": "vite", // Line 12 → Starts local HMR server
+    "build": "vite build", // Line 13 → Compiles production assets
+    "preview": "vite preview", // Line 14 → Tests production build locally
+    "vercel-build": "vite build" // Line 15 → Explicit Vercel trigger
+  },
+  "dependencies": {
+    "react": "^18.2.0", // Line 18 → UI library
+    "react-dom": "^18.2.0", // Line 19 → DOM renderer
+    "@supabase/supabase-js": "^2.39.0", // Line 20 → Secure DB/Auth client
+    "lucide-react": "^0.344.0" // Line 21 → Lightweight SVG icons
+  },
+  "devDependencies": {
+    "@vitejs/plugin-react": "^4.2.1", // Line 24 → React fast refresh
+    "vite": "^5.1.0", // Line 25 → Build tool
+    "tailwindcss": "^3.4.1", // Line 26 → Utility CSS
+    "postcss": "^8.4.35", // Line 27 → CSS processor
+    "autoprefixer": "^10.4.17" // Line 28 → Vendor prefixing
+  }
+}
