@@ -1,0 +1,18 @@
+# 📁 FILE: .gitignore
+# 📏 LINES: 1-28
+# 🎯 PURPOSE: Prevents sensitive files, builds, and OS artifacts from entering Git
+# 🔒 SECURITY: Blocks .env, node_modules, dist, and editor caches from version control
+
+node_modules/           // Line 10 → Ignores installed dependencies
+dist/                   // Line 11 → Ignores Vite production build output
+.env                    // Line 12 → Blocks local secrets from being committed
+.env.local              // Line 13 → Blocks environment overrides
+.env.production         // Line 14 → Blocks production keys
+.env.development        // Line 15 → Blocks dev keys
+*.tsbuildinfo           // Line 16 → Blocks TypeScript compilation cache
+.vscode/settings.json   // Line 17 → Blocks local editor settings
+.DS_Store               // Line 18 → Blocks macOS folder metadata
+Thumbs.db               // Line 19 → Blocks Windows thumbnail cache
+*.log                   // Line 20 → Blocks application logs
+coverage/               // Line 21 → Blocks test coverage reports
+.vercel                 // Line 22 → Blocks Vercel deployment cache
