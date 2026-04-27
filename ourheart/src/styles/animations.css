@@ -1,0 +1,66 @@
+/* 📁 FILE: src/styles/animations.css */
+/* 📏 LINES: 1-50 */
+/* 🎯 PURPOSE: 60fps keyframes, physics curves, reduced-motion fallback, chat typing indicators */
+/* 🔒 SECURITY: No JS-triggered inline styles, pure CSS transforms (GPU accelerated) */
+
+/* Line 8 → Core Easing Curve (Snappy, natural motion) */
+:root {
+  --ease-snappy: cubic-bezier(0.4, 0, 0.2, 1); /* Line 9 → Used across all slide/scale transitions */
+}
+
+/* Line 11 → Fade-In (Modal/Component Entrance) */
+@keyframes fadeIn {
+  0% { opacity: 0; transform: translateY(8px); } /* Line 12 → Start hidden, slightly lower */
+  100% { opacity: 1; transform: translateY(0); } /* Line 13 → End visible, reset position */
+}
+.anim-fade-in { animation: fadeIn 0.2s linear forwards; } /* Line 14 → Utility class */
+
+/* Line 16 → Slide-Up (Chat Messages/Cards) */
+@keyframes slideUp {
+  0% { opacity: 0; transform: translateY(24px) scale(0.98); } /* Line 17 → Start offset + scaled down */
+  100% { opacity: 1; transform: translateY(0) scale(1); } /* Line 18 → End natural */
+}
+.anim-slide-up { animation: slideUp 0.3s var(--ease-snappy) forwards; } /* Line 19 → Physics-based utility */
+
+/* Line 21 → Pulse Glow (Heart Tokens/Notifications) */
+@keyframes pulseGlow {
+  0%, 100% { box-shadow: 0 0 0 0 var(--pink-glow); } /* Line 22 → Rest state */
+  50% { box-shadow: 0 0 16px 4px var(--pink-glow); } /* Line 23 → Peak expansion */
+}
+.anim-pulse { animation: pulseGlow 2s ease-in-out infinite; } /* Line 24 → Utility class */
+
+/* Line 26 → Typing Indicator Dots */
+@keyframes typingDot {
+  0%, 60%, 100% { transform: translateY(0); opacity: 0.4; } /* Line 27 → Rest */
+  30% { transform: translateY(-6px); opacity: 1; } /* Line 28 → Bounce */
+}
+.typing-dot:nth-child(1) { animation: typingDot 1.2s infinite 0s; } /* Line 29 → Stagger start */
+.typing-dot:nth-child(2) { animation: typingDot 1.2s infinite 0.2s; } /* Line 30 → Stagger start */
+.typing-dot:nth-child(3) { animation: typingDot 1.2s infinite 0.4s; } /* Line 31 → Stagger start */
+
+/* Line 33 → Mesh Drift (Background subtle movement) */
+@keyframes meshShift {
+  0% { background-position: 0% 50%; } /* Line 34 → Start */
+  50% { background-position: 100% 50%; } /* Line 35 → Mid drift */
+  100% { background-position: 0% 50%; } /* Line 36 → Loop */
+}
+.anim-mesh { animation: meshShift 30s ease-in-out infinite; } /* Line 37 → Slow, organic utility */
+
+/* Line 39 → Accessibility: Reduced Motion Fallback */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { /* Line 40 → Global override */
+    animation-duration: 0.01ms !important; /* Line 41 → Instant */
+    animation-iteration-count: 1 !important; /* Line 42 → No loop */
+    transition-duration: 0.01ms !important; /* Line 43 → Instant */
+    scroll-behavior: auto !important; /* Line 44 → Jump scroll */
+  }
+  .anim-mesh { opacity: 0 !important; } /* Line 45 → Hides background drift */
+}
+
+/* Line 47 → Performance: GPU Acceleration Hints */
+.anim-hardware {
+  transform: translateZ(0);         /* Line 48 → Forces composite layer */
+  backface-visibility: hidden;      /* Line 49 → Prevents flicker */
+}
+
+/* Line 50 → Closes file */
