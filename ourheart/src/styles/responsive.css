@@ -1,0 +1,49 @@
+/* 📁 FILE: src/styles/responsive.css */
+/* 📏 LINES: 1-42 */
+/* 🎯 PURPOSE: Mobile-first breakpoints, touch optimization, safe areas, typography scaling */
+/* 🔒 SECURITY: No layout thrashing, uses clamp() for fluid scaling, respects system UI */
+
+/* Line 8 → Mobile Base (<768px) */
+/* Touch targets already 44px min via Tailwind defaults. Added explicit safe-area support. */
+.safe-top { padding-top: env(safe-area-inset-top); } /* Line 11 → iOS notch avoidance */
+.safe-bottom { padding-bottom: env(safe-area-inset-bottom); } /* Line 12 → iOS home bar */
+.safe-left { padding-left: env(safe-area-inset-left); } /* Line 13 → Device edge padding */
+.safe-right { padding-right: env(safe-area-inset-right); } /* Line 14 → Device edge padding */
+
+/* Line 16 → Fluid Typography (Prevents overflow on small screens) */
+.text-responsive-sm { font-size: clamp(0.85rem, 0.8rem + 0.25vw, 0.95rem); } /* Line 17 → Captions/labels */
+.text-responsive-base { font-size: clamp(0.95rem, 0.88rem + 0.35vw, 1rem); } /* Line 18 → Body text */
+.text-responsive-lg { font-size: clamp(1.1rem, 1rem + 0.5vw, 1.25rem); } /* Line 19 → Subtitles */
+.text-responsive-xl { font-size: clamp(1.4rem, 1.2rem + 1vw, 2rem); } /* Line 20 → Headings */
+
+/* Line 22 → Tablet (≥768px) */
+@media (min-width: 768px) {
+  .chat-bubble { max-width: 75%; } /* Line 23 → Wider on larger screens */
+  .char-card { flex: 1 1 calc(33.333% - 16px); } /* Line 24 → 3-column grid fallback */
+  .glass-panel { border-radius: 16px; } /* Line 25 → Slightly softer edges */
+  .nav-height { height: 56px; } /* Line 26 → Taller bottom nav */
+}
+
+/* Line 28 → Desktop (≥1024px) */
+@media (min-width: 1024px) {
+  .chat-bubble { max-width: 60%; } /* Line 29 → Narrower for readability */
+  .char-card { flex: 1 1 calc(25% - 24px); } /* Line 30 → 4-column grid */
+  .container-main { max-width: 1280px; margin: 0 auto; padding: 0 32px; } /* Line 31 → Centered layout */
+  .sidebar-dock { display: block; } /* Line 32 → Enables desktop side nav */
+  .mobile-only { display: none; } /* Line 33 → Hides mobile UI */
+}
+
+/* Line 35 → Large Desktop / 4K (≥1920px) */
+@media (min-width: 1920px) {
+  .container-main { max-width: 1600px; } /* Line 36 → Wider content area */
+  .char-card { flex: 1 1 calc(20% - 32px); } /* Line 37 → 5-column grid */
+  :root { --glass-blur: 30px; } /* Line 38 → Stronger blur on large screens */
+  .text-responsive-xl { font-size: clamp(2rem, 1.8rem + 1vw, 3rem); } /* Line 39 → Scales hero text */
+}
+
+/* Line 41 → Landscape Mobile Fix (Prevents keyboard overlay) */
+@media (max-height: 500px) and (orientation: landscape) {
+  .chat-input-container { position: fixed; bottom: 0; width: 100%; } /* Line 42 → Keeps input accessible */
+}
+
+/* Line 43 → Closes file */
