@@ -1,0 +1,59 @@
+/* 📁 FILE: src/styles/glassmorphism.css */
+/* 📏 LINES: 1-48 */
+/* 🎯 PURPOSE: Reusable glass components, hover/press states, inner glow, backdrop handling */
+/* 🔒 SECURITY: No external dependencies, pure CSS, hardware-accelerated transforms */
+
+/* Line 8 → Base Glass Panel */
+.glass-panel {
+  background: var(--glass-bg);      /* Line 9 → Semi-transparent surface */
+  backdrop-filter: blur(var(--glass-blur)); /* Line 10 → Frosted glass effect */
+  -webkit-backdrop-filter: blur(var(--glass-blur)); /* Line 11 → Safari fallback */
+  border: 1px solid var(--glass-border); /* Line 12 → Premium edge definition */
+  border-radius: var(--radius-md);  /* Line 13 → Soft corners */
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.05); /* Line 14 → Depth + inner light */
+  transition: transform var(--transition-base), box-shadow var(--transition-base); /* Line 15 → Smooth state changes */
+  will-change: transform;           /* Line 16 → GPU layer promotion */
+}
+
+/* Line 18 → Hover Elevation */
+.glass-panel:hover {
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.45), inset 0 1px 0 rgba(255, 255, 255, 0.08); /* Line 19 → Deeper shadow on hover */
+}
+
+/* Line 21 → Active/Press Physics (0.95x scale) */
+.glass-panel:active {
+  transform: scale(0.97);           /* Line 22 → Tactile press feedback */
+  transition-duration: 0.1s;        /* Line 23 → Snappy response */
+}
+
+/* Line 25 → Glass Button Variant */
+.glass-btn {
+  @extend .glass-panel;             /* Line 26 → Inherits glass base */
+  padding: 12px 24px;               /* Line 27 → Comfortable touch target */
+  font-weight: 500;                 /* Line 28 → Readable weight */
+  cursor: pointer;                  /* Line 29 → Pointer indication */
+  display: inline-flex; align-items: center; justify-content: center; /* Line 30 → Centered layout */
+  gap: 8px;                         /* Line 31 → Icon/text spacing */
+  background: linear-gradient(135deg, rgba(255, 79, 163, 0.15), rgba(255, 111, 175, 0.08)); /* Line 32 → Pink gradient tint */
+}
+
+/* Line 34 → Primary Action Button */
+.glass-btn-primary {
+  background: var(--pink-primary);  /* Line 35 → Solid accent */
+  border: none;                     /* Line 36 → Removes default border */
+  box-shadow: 0 4px 16px var(--pink-glow); /* Line 37 → Glowing elevation */
+  color: #FFFFFF;                   /* Line 38 → High contrast text */
+}
+
+/* Line 40 → Primary Button Hover/Press */
+.glass-btn-primary:hover { background: var(--pink-secondary); } /* Line 41 → Brighter on hover */
+.glass-btn-primary:active { transform: scale(0.95); box-shadow: 0 2px 8px var(--pink-glow); } /* Line 42 → Compress on press */
+
+/* Line 44 → Disabled State */
+.glass-panel[disabled], .glass-btn[disabled] {
+  opacity: 0.4;                     /* Line 45 → Visual feedback */
+  pointer-events: none;             /* Line 46 → Prevents interaction */
+  filter: grayscale(0.5);           /* Line 47 → Mutes color */
+}
+
+/* Line 48 → Closes file */
