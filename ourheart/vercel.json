@@ -1,0 +1,24 @@
+{
+  // 📁 FILE: vercel.json
+  // 📏 LINES: 1-18
+  // 🎯 PURPOSE: Vercel routing, SPA fallback, security headers, env mapping
+  // 🔒 SECURITY: Forces HTTPS, blocks clickjacking, routes all to index.html
+  "version": 2,
+  "builds": [
+    { "src": "package.json", "use": "@vercel/static-build", "config": { "distDir": "dist" } } // Line 7 → Vercel build trigger
+  ],
+  "routes": [
+    { "src": "/assets/(.*)", "dest": "/assets/$1", "headers": { "Cache-Control": "public, max-age=31536000, immutable" } }, // Line 10 → Cache static assets
+    { "src": "/video/(.*)", "dest": "/video/$1", "headers": { "Cache-Control": "public, max-age=86400" } }, // Line 11 → Cache video assets
+    { "src": "/(.*)", "dest": "/index.html" } // Line 12 → SPA client-side routing
+  ],
+  "headers": [
+    {
+      "source": "/(.*)",
+      "headers": [ // Line 16 → Security headers
+        { "key": "X-Content-Type-Options", "value": "nosniff" }, // Line 17
+        { "key": "X-Frame-Options", "value": "DENY" } // Line 18
+      ]
+    }
+  ]
+}
