@@ -1,0 +1,70 @@
+/* 📁 FILE: src/styles/globals.css */
+/* 📏 LINES: 1-52 */
+/* 🎯 PURPOSE: Base reset, design tokens, typography, mesh background, accessibility defaults */
+/* 🔒 SECURITY: No external imports except verified Google Fonts, scoped variables, no eval() */
+
+/* Line 8 → Google Fonts import (preconnect handled in index.html) */
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600&family=Montserrat:wght@400;500;600&display=swap');
+
+/* Line 10 → CSS Variables (Midnight & Champagne theme) */
+:root {
+  --bg-obsidian: #0F0F0F;           /* Line 11 → Primary dark background */
+  --bg-charcoal: #111111;           /* Line 12 → Card/panel surface */
+  --pink-primary: #FF4FA3;          /* Line 13 → Primary accent (buttons, highlights) */
+  --pink-secondary: #FF6FAF;        /* Line 14 → Hover/active states */
+  --pink-glow: rgba(255, 79, 163, 0.35); /* Line 15 → Soft pink shadow for interactive elements */
+  --text-primary: #FFFFFF;          /* Line 16 → High-contrast readable text */
+  --text-secondary: #B0B0B0;        /* Line 17 → Muted secondary text */
+  --glass-bg: rgba(255, 255, 255, 0.03); /* Line 18 → Base glass transparency */
+  --glass-border: rgba(255, 255, 255, 0.1); /* Line 19 → 1px glass edge */
+  --glass-blur: 25px;               /* Line 20 → Premium backdrop filter intensity */
+  --mesh-teal: #1A2B3C;             /* Line 21 → Organic background gradient layer */
+  --mesh-purple: #2A1B3D;           /* Line 22 → Deep atmospheric gradient layer */
+  --radius-sm: 8px;                 /* Line 23 → Consistent corner rounding */
+  --radius-md: 12px;                /* Line 24 → Button/card standard */
+  --radius-lg: 20px;                /* Line 25 → Modal/overlay standard */
+  --transition-fast: 0.15s ease;    /* Line 26 → Micro-interaction speed */
+  --transition-base: 0.3s cubic-bezier(0.4, 0, 0.2, 1); /* Line 27 → Physics-based motion curve */
+}
+
+/* Line 29 → Global Reset (Tailwind base layer override) */
+*, *::before, *::after {
+  box-sizing: border-box;           /* Line 31 → Prevents layout shift from padding/margin */
+  margin: 0; padding: 0;            /* Line 32 → Resets browser defaults */
+}
+
+/* Line 34 → Root Body Styling */
+html {
+  scroll-behavior: smooth;          /* Line 35 → Native smooth scrolling */
+  -webkit-font-smoothing: antialiased; /* Line 36 → Crisp font rendering */
+  -moz-osx-font-smoothing: grayscale;  /* Line 37 → Consistent macOS typography */
+}
+
+body {
+  background-color: var(--bg-obsidian); /* Line 40 → Obsidian base */
+  color: var(--text-primary);       /* Line 41 → White text default */
+  font-family: 'Inter', sans-serif; /* Line 42 → Primary UI font */
+  overflow-x: hidden;               /* Line 43 → Prevents horizontal scroll leaks */
+  min-height: 100vh;                /* Line 44 → Ensures full viewport height */
+}
+
+/* Line 46 → Mesh Gradient Background (Organic "Juice") */
+body::before {
+  content: '';                      /* Line 47 → Pseudo-element container */
+  position: fixed;                  /* Line 48 → Stays behind all content */
+  inset: 0;                         /* Line 49 → Full viewport coverage */
+  background: radial-gradient(circle at 20% 30%, var(--mesh-purple) 0%, transparent 50%),
+              radial-gradient(circle at 80% 70%, var(--mesh-teal) 0%, transparent 50%);
+  opacity: 0.12;                    /* Line 52 → Subtle, barely visible depth */
+  z-index: -1;                      /* Line 53 → Behind everything */
+  pointer-events: none;             /* Line 54 → Doesn't block clicks */
+}
+
+/* Line 56 → Scrollbar Customization (Matches theme) */
+::-webkit-scrollbar { width: 8px; height: 8px; } /* Line 57 → Thin track */
+::-webkit-scrollbar-track { background: transparent; } /* Line 58 → Clean base */
+::-webkit-scrollbar-thumb { background: rgba(255, 255, 255, 0.15); border-radius: 4px; } /* Line 59 → Subtle handle */
+::-webkit-scrollbar-thumb:hover { background: rgba(255, 255, 255, 0.25); } /* Line 60 → Hover state */
+
+/* Line 62 → Text Selection (Pink accent) */
+::selection { background: var(--pink-primary); color: #FFFFFF; } /* Line 63 → Brand-consistent highlight */
